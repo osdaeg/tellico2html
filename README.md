@@ -32,7 +32,7 @@ Convierte una colección de libros de [Tellico](https://tellico-project.org/) en
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/osdaeg/tellico2html.git
+git clone https://codeberg.org/osdaeg/tellico2html.git
 cd tellico2html
 ```
 
