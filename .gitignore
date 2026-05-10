@@ -1,0 +1,10 @@
+docker-compose.yml
+.env
+*.log
+especificaciones.txt
+cache/*.*
+apigooglebooks
+tokenhardcover
+README.md.github
+
+README.md.codeberg

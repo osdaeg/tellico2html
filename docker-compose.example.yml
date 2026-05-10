@@ -1,0 +1,30 @@
+
+
+services:
+  tellico2html:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tellico2html
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${TELLICO2HTML_EXTERNAL_PORT:-7995}:${TELLICO2HTML_INTERNAL_PORT:-8000}"
+    volumes:
+      # Base de datos Tellico (mapeada desde el host)
+      - "/ruta/donde/tellico/guarda/tu/coleccion/de/libros/:/libros"
+      # Archivos estáticos generados (compartido con Nginx)
+      - /ruta/donde/nginx/guarda/el/html/de/tellico2html:/app/static
+    networks:
+      - TuRed
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${TELLICO2HTML_INTERNAL_PORT:-8000}/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  TuRed:
+    external: true
